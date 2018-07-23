@@ -87,7 +87,7 @@
   <div style="font-size:24px; text-align:center;">{{ patternType }}</div>
   <div class="grid-container">
     <div class="grid-item" ng-if="patternType == 'Grid'" ng-repeat="i in dotsArray track by $index"></div>
-    <div class="grid-item" ng-if="patternType == 'Checkers'" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="i in dotsArray track by $index"></div>
-    <div class="grid-item" ng-if="patternType == 'Odd'" ng-class="{'even': i}" ng-repeat="i in dotsArray track by $index"></div>
+    <div class="grid-item" ng-if="patternType == 'Checkers'" ng-class="{'even': i.white}" ng-repeat="i in dotsArray"></div>
+    <div class="grid-item" ng-if="patternType == 'Odd'" ng-class="{'even': i.white}" ng-repeat="i in dotsArray"></div>
   </div>
 </div>

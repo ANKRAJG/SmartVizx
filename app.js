@@ -1,5 +1,5 @@
 
-var app = angular.module('smartVizx', ['ui.router', 'rzModule']);
+var app = angular.module('smartVizx', ['ui.router', 'rzModule', 'ngAnimate']);
 
 app.run(function() {
 

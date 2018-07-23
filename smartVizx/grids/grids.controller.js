@@ -49,18 +49,96 @@ app.controller('gridsCtrl', ['$scope',
         createDynamicDom();
 
         function processDotsArray() {
-          $scope.dotsArray = [];
-          $scope.patternType = $scope.gridObj.pattern;
-          for (var i=0; i<$scope.gridObj.dotRows; i++) {
-            for (var j=0; j<$scope.gridObj.dotColumns; j++) {
-              if(((i % 2) == 0) || ((j % 2) == 0)) {
-                $scope.dotsArray.push(false);
-              }
-              else {
-                $scope.dotsArray.push(true);
+            $scope.dotsArray = [];
+            var temp_obj = {
+              white: false
+            };
+            $scope.patternType = $scope.gridObj.pattern;
+            var rows = $scope.gridObj.dotRows;
+            var columns = $scope.gridObj.dotColumns;
+            if($scope.patternType == 'Odd') {
+              for (var i=0; i<rows; i++) {
+                for (var j=0; j<columns; j++) {
+                  if(((i % 2) == 0) || ((j % 2) == 0)) {
+                    $scope.dotsArray.push({white: false});
+                  }
+                  else {
+                    $scope.dotsArray.push({white: true});
+                  }
+                }
               }
             }
-          }
+            else {
+              if((rows%2 == 0) || (columns%2 == 0)) {
+                if((columns%2 == 0 && rows%2 != 0) || (columns%2 == 0 && rows%2 == 0)) {
+                    for (var i=0; i<rows; i++) {
+                      for (var j=0; j<columns; j++) {
+                        if(i % 2 == 0) {
+                          if((j % 2) == 0) {
+                            $scope.dotsArray.push({white: false});
+                          }
+                          else {
+                            $scope.dotsArray.push({white: true});
+                          }
+                        }
+                        else {
+                          if((j % 2) == 0) {
+                            $scope.dotsArray.push({white: true});
+                          }
+                          else {
+                            $scope.dotsArray.push({white: false});
+                          }
+                        }
+                      }
+                    }
+                }
+                if(columns%2 != 0 && rows%2 == 0) {
+                  for (var i=0; i<columns; i++) {
+                    for (var j=0; j<rows; j++) {
+                      if(i % 2 == 0) {
+                        if((j % 2) == 0) {
+                          $scope.dotsArray.push({white: false});
+                        }
+                        else {
+                          $scope.dotsArray.push({white: true});
+                        }
+                      }
+                      else {
+                        if((j % 2) == 0) {
+                          $scope.dotsArray.push({white: false});
+                        }
+                        else {
+                          $scope.dotsArray.push({white: true});
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                for (var i=0; i<columns; i++) {
+                  for (var j=0; j<rows; j++) {
+                    if(i % 2 == 0) {
+                      if((j % 2) == 0) {
+                        $scope.dotsArray.push({white: false});
+                      }
+                      else {
+                        $scope.dotsArray.push({white: true});
+                      }
+                    }
+                    else {
+                      if((j % 2) == 0) {
+                        $scope.dotsArray.push({white: true});
+                      }
+                      else {
+                        $scope.dotsArray.push({white: false});
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            console.log('$scope.dotsArray = ', $scope.dotsArray);
         }
         processDotsArray();
 
@@ -71,7 +149,6 @@ app.controller('gridsCtrl', ['$scope',
           else {
             $scope.heightError = false;
           }
-          $scope.gridObj.pattern = 'Grid';
         }
 
         $scope.checkForWidth = function() {
@@ -81,7 +158,6 @@ app.controller('gridsCtrl', ['$scope',
           else {
             $scope.widthError = false;
           }
-          $scope.gridObj.pattern = 'Grid';
         }
 
         $scope.checkForRowDots = function() {
@@ -91,7 +167,6 @@ app.controller('gridsCtrl', ['$scope',
           else {
             $scope.rowDotError = false;
           }
-          $scope.gridObj.pattern = 'Grid';
         }
 
         $scope.checkForColDots = function() {
@@ -101,7 +176,6 @@ app.controller('gridsCtrl', ['$scope',
           else {
             $scope.colDotError = false;
           }
-          $scope.gridObj.pattern = 'Grid';
         }
 
         $scope.checkForRadius = function() {
@@ -114,7 +188,6 @@ app.controller('gridsCtrl', ['$scope',
           else {
             $scope.radiusError = false;
           }
-          $scope.gridObj.pattern = 'Grid';
         }
 
         $scope.saveGrid = function() {
