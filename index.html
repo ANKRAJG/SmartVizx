@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="smartVizx">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/angularjs-slider/dist/rzslider.min.css"/>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/underscore/underscore-min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/angularjs-slider/dist/rzslider.min.js"></script>
+    <script src="app.js"></script>
+    <script src="appController.js"></script>
+    <script src="smartVizx/mainController.js"></script>
+    <script src="smartVizx/grids/grids.controller.js"></script>
+    <script src="smartVizx/slider/slider.controller.js"></script>
+    <script src="smartVizx/parser/parser.controller.js"></script>
+    <script src="smartVizx/characters/characters.controller.js"></script>
+    <script src="smartVizx/directives.js"></script>
+	</head>
+	<body ng-controller="appCtrl">
+      <div ui-view></div>
+	</body>
+</html>

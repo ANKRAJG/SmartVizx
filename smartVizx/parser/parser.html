@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-lg-10" style="margin:50px auto;">
+    <div class="row">
+      <div class="col-lg-12 tabHead">
+        Text Parser
+      </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+      <div class="form-group col-lg-6 parserContain">
+        <label>Input</label>
+        <textarea class="form-control textarea-height" type="text" name="parserInput" ng-keyup="checkForTextType()" ng-model="parserInput"></textarea>
+      </div>
+
+      <div class="col-lg-6 parserContain">
+        <label>Output</label>
+        <div class="parserInner" ng-if="textType == 'text'">
+          <span>{{ parserOutput }}</span>
+        </div>
+        <div class="parserInner" ng-if="textType == 'image_url'">
+          <span>
+            <img src="{{ parserOutput }}" />
+          </span>
+        </div>
+        <div class="parserInner" ng-if="textType == 'url'">
+          <span>
+            <a href="{{ parserOutput }}" target="_blank">{{ parserInput }}</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

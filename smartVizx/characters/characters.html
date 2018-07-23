@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-lg-8" style="margin:50px auto;">
+    <div class="row">
+      <div class="col-lg-12 tabHead">
+        Character Reversal
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:30px;">
+      <div class="form-group col-lg-6 parserContain">
+        <label>Input Text</label>
+        <input class="form-control textBox" type="text" name="character-input" ng-model="characterInput">
+
+        <button class="btn btn-primary" type="button" ng-click="reverseChars()">Reverse</button>
+      </div>
+
+      <div class="col-lg-6 parserContain">
+        <label>Output</label>
+        <div>
+          <h3></h3><b>{{ reversedString }}</b></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

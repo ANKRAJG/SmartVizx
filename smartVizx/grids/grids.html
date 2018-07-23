@@ -1,0 +1,93 @@
+
+<div class="form-container">
+  <form id="gridForm" name="gridsForm" ng-submit="saveGrid()">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <label>Size of Box</label>
+          <div class="row">
+            <div class="form-group col-lg-12" ng-class="{'has-error': widthError}">
+              <label class="small-label">Width (in px)</label>
+              <input class="form-control textBox" type="number" name="grid-width" ng-model="gridObj.width" ng-keyup="checkForWidth()" placeholder="Width (in px)">
+              <span class="error" ng-if="widthError">Width should not be less than {{ widthError }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-12" ng-class="{'has-error': heightError}">
+              <label class="small-label">Height (in px)</label>
+              <input class="form-control textBox" type="number" name="grid-height" ng-model="gridObj.height" ng-keyup="checkForHeight()" placeholder="Height (in px)">
+              <span class="error" ng-if="heightError">Height should not be less than {{ heightError }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <label>Number of dots</label>
+          <div class="row">
+            <div class="form-group col-lg-12" ng-class="{'has-error': colDotError}">
+              <label class="small-label">Dots in a column</label>
+              <input class="form-control textBox" type="number" name="dots-columns" ng-model="gridObj.dotColumns" ng-keyup="checkForColDots()" placeholder="Dots per column">
+              <span class="error" ng-if="colDotError">Column dots should not be greater than {{ colDotError }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-12" ng-class="{'has-error': rowDotError}">
+              <label class="small-label">Dots in a row</label>
+              <input class="form-control textBox" type="number" name="dots-rows" ng-model="gridObj.dotRows" ng-keyup="checkForRowDots()" placeholder="Dots per row">
+              <span class="error" ng-if="rowDotError">Row dots should not be greater than {{ rowDotError }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <label>Radius of dots</label>
+          <div class="row">
+            <div class="form-group col-lg-12" ng-class="{'has-error': radiusError}">
+              <label class="small-label">Radius of a dot (in px)</label>
+              <input class="form-control textBox" type="number" name="grid-radius" ng-model="gridObj.radius" ng-keyup="checkForRadius()" placeholder="Radius (in px)">
+              <span class="error" ng-if="radiusError">Radius should not be greater than {{ radiusError }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <label>Color of dot & box</label>
+          <div class="row">
+            <div class="form-group col-lg-12">
+              <label class="small-label">Color of Dot</label>
+              <input class="form-control textBox" type="text" name="dot-color" ng-model="gridObj.dotColor" placeholder="Color of dot">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-12">
+              <label class="small-label">Color of box</label>
+              <input class="form-control textBox" type="text" name="box-color" ng-model="gridObj.boxColor" placeholder="Color of box">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+          <label>Choose Pattern</label>
+          <div class="row">
+            <div class="form-group col-lg-12">
+              <label class="small-label">Choose Pattern</label>
+              <select ng-options="item for item in patterns" ng-model="gridObj.pattern"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="column-wise form-group col-lg-2 col-md-2 col-sm-4 col-xs-4 margin-top-60">
+          <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+      </div>
+  </form>
+</div>
+
+
+<div class="grid-main">
+  <div style="font-size:24px; text-align:center;">{{ patternType }}</div>
+  <div class="grid-container">
+    <div class="grid-item" ng-if="patternType == 'Grid'" ng-repeat="i in dotsArray track by $index"></div>
+    <div class="grid-item" ng-if="patternType == 'Checkers'" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="i in dotsArray track by $index"></div>
+    <div class="grid-item" ng-if="patternType == 'Odd'" ng-class="{'even': i}" ng-repeat="i in dotsArray track by $index"></div>
+  </div>
+</div>

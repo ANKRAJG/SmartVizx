@@ -1,0 +1,26 @@
+{
+  "name": "smartVizx",
+  "authors": [
+    "ankrajagent <ankit@agentdesks.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "^1.0.19",
+    "angular": "^1.7.2",
+    "bootstrap": "^4.1.2",
+    "underscore": "^1.9.1",
+    "jquery": "^3.3.1",
+    "angularjs-slider": "^6.6.0"
+  }
+}
