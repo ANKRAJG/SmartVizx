@@ -5,16 +5,18 @@ app.directive('numericalSlider', [function () {
       scope: {
         'min' : '<',
         'max' : '<',
-        'value' : '<'
+        'value' : '<',
+        'width' : '<'
       },
       templateUrl: 'smartVizx/numericalSlider.html',
       link: function (scope, element, attrs) {
 
-          var sliderWidth = $('.sliderWrapper').width();
-          var sliderLength = parseInt(scope.max) - parseInt(scope.min);
+          var sliderWidth = scope.width;
+          var sliderLength = scope.max - scope.min;
+          $('.sliderWrapper').css('width', sliderWidth + 'px');
           $('.sliderParentWrapper').css('width', sliderWidth + 70 + 'px');
           var startpixel = $('.sliderParentWrapper').offset();
-          var initialPoint = ((scope.value - parseInt(scope.min)) * sliderWidth / sliderLength ) + startpixel.left;
+          var initialPoint = ((scope.value - scope.min) * sliderWidth / sliderLength ) + startpixel.left;
           $( "#bubble" ).offset({ left: initialPoint });
           $('.colored-line').css('width', initialPoint - startpixel.left + 'px');
 
@@ -25,7 +27,7 @@ app.directive('numericalSlider', [function () {
               var startpixel = $('.sliderParentWrapper').offset();
               var point = $('#bubble').offset().left;
               $('.colored-line').css('width', point - startpixel.left + 'px');
-              scope.value = parseInt((point - startpixel.left + 1) * sliderLength / sliderWidth) + parseInt(scope.min);
+              scope.value = parseInt((point - startpixel.left + 1) * sliderLength / sliderWidth) + scope.min;
               scope.$digest();
             }
           });
