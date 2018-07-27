@@ -13,11 +13,12 @@ app.controller('sliderCtrl', ['$scope',
           }
         }
 
+        $scope.firstDotDistance = 68;
         var sliderWidth = $('.sliderWrapper').width();
+        var sliderLength = parseInt($('.right-end').text()) - parseInt($('.left-end').text());
         $('.sliderParentWrapper').css('width', sliderWidth + 70 + 'px');
         var startpixel = $('.sliderParentWrapper').offset();
-        var initialPoint = (43 * sliderWidth / 100) + startpixel.left;
-        $scope.firstDotDistance = 68;
+        var initialPoint = (($scope.firstDotDistance - parseInt($('.left-end').text()) + 1) * sliderWidth / (100 * sliderLength/100) ) + startpixel.left;
         $( "#bubble" ).offset({ left: initialPoint });
         $('.colored-line').css('width', initialPoint - startpixel.left + 'px');
 
@@ -27,7 +28,7 @@ app.controller('sliderCtrl', ['$scope',
           drag: function( event, ui ) {
             var point = $('#bubble').offset().left;
             $('.colored-line').css('width', point - startpixel.left + 'px');
-            $scope.firstDotDistance = parseInt((point - startpixel.left) * 100 / sliderWidth) + 25;
+            $scope.firstDotDistance = parseInt((point - startpixel.left + 1) * (100 * sliderLength/100) / sliderWidth) + parseInt($('.left-end').text());
             $scope.$digest();
           }
         });
