@@ -1,7 +1,7 @@
 
 
-app.controller('gridsCtrl', ['$scope',
-  function($scope) {
+app.controller('gridsCtrl', ['$scope', '$timeout',
+  function($scope, $timeout) {
         $scope.gridObj = {
             height: 330,
             width: 330,
@@ -46,99 +46,40 @@ app.controller('gridsCtrl', ['$scope',
             $('.grid-container').css('padding-top', gridRowGap + 'px');
             $('.grid-container').css('padding-bottom', gridRowGap + 'px');
         }
-        createDynamicDom();
+        $timeout(function() {
+          createDynamicDom();
+        });
 
         function processDotsArray() {
-            $scope.dotsArray = [];
-            var temp_obj = {
-              white: false
-            };
             $scope.patternType = $scope.gridObj.pattern;
+            var whiteFlag;
+            $scope.dotsArray = [];
             var rows = $scope.gridObj.dotRows;
             var columns = $scope.gridObj.dotColumns;
             if($scope.patternType == 'Odd') {
               for (var i=0; i<rows; i++) {
                 for (var j=0; j<columns; j++) {
-                  if(((i % 2) == 0) || ((j % 2) == 0)) {
-                    $scope.dotsArray.push({white: false});
+                  if(((i % 2) !== 0) && ((j % 2) !== 0)) {
+                    $scope.dotsArray.push({white: true});
                   }
                   else {
-                    $scope.dotsArray.push({white: true});
+                    $scope.dotsArray.push({white: false});
                   }
                 }
               }
             }
             else {
-              if((rows%2 == 0) || (columns%2 == 0)) {
-                if((columns%2 == 0 && rows%2 != 0) || (columns%2 == 0 && rows%2 == 0)) {
-                    for (var i=0; i<rows; i++) {
-                      for (var j=0; j<columns; j++) {
-                        if(i % 2 == 0) {
-                          if((j % 2) == 0) {
-                            $scope.dotsArray.push({white: false});
-                          }
-                          else {
-                            $scope.dotsArray.push({white: true});
-                          }
-                        }
-                        else {
-                          if((j % 2) == 0) {
-                            $scope.dotsArray.push({white: true});
-                          }
-                          else {
-                            $scope.dotsArray.push({white: false});
-                          }
-                        }
-                      }
-                    }
+              whiteFlag = true;
+              for(var i=0; i<rows; i++) {
+                if((columns % 2 === 0) && (i !== 0)) {
+                  whiteFlag = !whiteFlag;
                 }
-                if(columns%2 != 0 && rows%2 == 0) {
-                  for (var i=0; i<columns; i++) {
-                    for (var j=0; j<rows; j++) {
-                      if(i % 2 == 0) {
-                        if((j % 2) == 0) {
-                          $scope.dotsArray.push({white: false});
-                        }
-                        else {
-                          $scope.dotsArray.push({white: true});
-                        }
-                      }
-                      else {
-                        if((j % 2) == 0) {
-                          $scope.dotsArray.push({white: false});
-                        }
-                        else {
-                          $scope.dotsArray.push({white: true});
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              else {
-                for (var i=0; i<columns; i++) {
-                  for (var j=0; j<rows; j++) {
-                    if(i % 2 == 0) {
-                      if((j % 2) == 0) {
-                        $scope.dotsArray.push({white: false});
-                      }
-                      else {
-                        $scope.dotsArray.push({white: true});
-                      }
-                    }
-                    else {
-                      if((j % 2) == 0) {
-                        $scope.dotsArray.push({white: true});
-                      }
-                      else {
-                        $scope.dotsArray.push({white: false});
-                      }
-                    }
-                  }
+                for(var j=0; j<columns; j++) {
+                  whiteFlag = !whiteFlag;
+                  $scope.dotsArray.push({white: whiteFlag});
                 }
               }
             }
-            console.log('$scope.dotsArray = ', $scope.dotsArray);
         }
         processDotsArray();
 
@@ -202,7 +143,9 @@ app.controller('gridsCtrl', ['$scope',
             localStorage.setItem('gridObj', JSON.stringify($scope.gridObj));
 
             processDotsArray();
-            createDynamicDom();
+            $timeout(function() {
+              createDynamicDom();
+            });
           }
         }
 
