@@ -123,18 +123,22 @@ body .ng-enter-active {
 
 /* Custom Slider */
 
+.slider {
+  display:inline-flex;
+}
+
 .slider-outer {
   margin: 80px auto;
 }
 
 .left-end {
-  margin-top: 55px;
-  left: 30px;
+  margin-top: -10px;
+  left: 45px;
   position: relative;
 }
 .right-end {
-  margin-top: 55px;
-  left: -30px;
+  margin-top: -10px;
+  left: -50px;
   position: relative;
 }
 
@@ -142,9 +146,9 @@ body .ng-enter-active {
   width: 100px;
   height: 4px;
   background-color: #c74646;
-  top: -34px;
+  top: -84px;
   position: relative;
-  left: 54px;
+  left: 45px;
 }
 
 .sliderParentWrapper {
@@ -152,7 +156,6 @@ body .ng-enter-active {
   width:570px;
   height:100px;
   display: inline-flex;
-  padding-top: 50px;
 }
 
 .sliderWrapper{
@@ -182,6 +185,7 @@ margin-top: -17px;
 hr {
   border: 2px solid rgba(0, 0, 0, 0.5);
 }
+
 
 
 

@@ -5,7 +5,7 @@ app.directive('numericalSlider', [function () {
       scope: {
         'min' : '<',
         'max' : '<',
-        'value' : '<',
+        'value' : '=',
         'width' : '<'
       },
       templateUrl: 'smartVizx/numericalSlider.html',
